@@ -1,0 +1,45 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Question 5}
+
+Describe various features of IPC mechanisms.
+
+
+\subsection{Pipes:}
+
+Pipes are used for communication between 2 processes e.g. ls | grep vim
+Here standard output of ls command is directly fed to the standard input of second
+command. Then the output of second command is displayed.
+Neither of the processes is aware of the other one, shell creates a pipe and
+redirects the output. For reading and writing into file, standard file library
+function are used. There are special pipes also known as named pipes. FIFO is
+one of them.
+
+\subsection{Message Queues:}
+
+In message queues one or more that one processes can read from them and multiple
+processes can write into them.	While reading or writing, access rights of the
+executing process are checked before granting permission. POSIX message queues
+allow message notification option.
+
+\subsection{Semaphore:}
+
+Semaphore is a memory location which can be accessed by multiple processes at
+the same time. For writing, each process has to call test and set function, this
+is done to avoid multiple processes writing at the same time. Test function
+returns appropriate value which tells if any other process is writing at that
+time or not.
+
+\subsection{Shared Memory:}
+
+Shared memory allows one or more processes to communicate via memory that
+appears in all of their virtual address spaces. The pages of the virtual memory
+is referenced by page table entries in each of the sharing processes' page
+tables. Access to shared memory is given by checking keys and access rights.
+Shared memory is a better option than others as it is very efficient and it also
+allows random access to memory locations. Efficiency is more because unlike
+message queues and pipes, which copy data from the process into memory within
+the kernel, shared memory is directly accessed.
+
+\clearpage
+\end{document}

@@ -1,0 +1,42 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Question 3}
+
+Implement sleep using signal function which takes care of the following:
+\begin{enumerate}
+	\item If the caller has already an alarm set, that alarm is not erased
+		by the call to alarm inside sleep implementation.
+	\item If sleep modifies the current disposition of SIGALRM, restore it.
+	\item Avoid race condition between first call to alarm and pause inside
+		sleep implementation using setjmp.
+\end{enumerate}
+Test the implementation of sleep by invoking it in various situations.
+
+\lstinputlisting[style=codeStyleC]{3.c}
+
+The new\_sleep function changes the signal handler for SIGALRM and remembers the
+old one. Then it sets alarm for given time and calls pause(). As the alarm
+function retuns the remaining time of previous alarm, we remember it for future.
+Between alarm(n) and pause() it sends SIGINT to itself just to test what happens
+in case of race condition. After completion of pause(), old disposition is set
+for signal again.  As the signal gets masked by signal() after calling signal
+handler, we have to unmask the signal, calls alarm function for remembered alarm
+time and exits.
+
+\includegraphics[width=\linewidth]{3.png}
+
+To test whether previously set alarm and the old disposition are remembered or
+not, an alarm and a disposition are set before calling new\_sleep and pause is
+called at the end.
+
+As SIGINT is sent between alarm() and pause() call, race condition can be
+observed. Still the process doesn't go in infinite loop, this shows that race
+condition is handled properly.
+
+When the code comes out of new\_sleep, the process comes out of pause() because
+previous set alarm is not discarded by the new\_sleep function and the interrupt
+also calls the old signal handler, thus old alarm and disposition are not
+discarded.
+
+\clearpage
+\end{document}

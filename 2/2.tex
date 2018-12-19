@@ -1,0 +1,23 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Question 2}
+
+A function realpath() resolves all symbolic links in path and returns the
+ultimate target. Write a program to simulate realpath() to list the ultimate
+target of the only filename that are symbolic links in a directory. The program
+takes one optional argument, which is the name of a directory to be searched for
+the links. When no argument is specified, the search is conducted in the current
+working directory.
+
+\lstinputlisting[style=codeStyleC]{\asgnno/2.c}
+\centering\includegraphics[width=10cm]{\asgnno/2.jpg}
+
+This code takes file/directory address as input and returns real path of the
+given file. Code traverses on the file name string and for each directory in
+that address it checks if it is a link using stat function and S\_ISLNK. If it is
+a link, it will read the address(link) inside it and replace it in the original
+string. Thus a final string is generated which may contain ../ or ./ which
+are removed in the next traversal.
+
+
+\end{document}

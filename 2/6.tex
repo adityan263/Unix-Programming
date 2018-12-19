@@ -1,0 +1,17 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Question 6}
+
+umask() always sets the process umask and, at the same time, returns a copy of
+the old umask. How can we obtain a copy of the current process umask while
+leaving it unchanged? Write a program to demonstrate.
+
+\lstinputlisting[style=codeStyleC]{\asgnno/6.c}
+\centering\includegraphics[width=10cm]{\asgnno/6.jpg}
+
+Fork function creates 2 threads with different process ids. Parent function
+retains its original pid while child function runs with pid=0. As umask is
+executed when pid==0, mask will change for child process and not for parent
+process.
+
+\end{document}

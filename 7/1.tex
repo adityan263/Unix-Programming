@@ -1,0 +1,33 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Question 1}
+
+Catch the SIGTERM signal, ignore SIGINT and accept the default action for
+SIGSEGV. Later let the program be suspended until it is interrupted by a signal.
+Implement using signal and sigaction.
+
+\subsection{Using signal()}
+\lstinputlisting[style=codeStyleC]{1a.c}
+
+Signal function takes two arguments, signal name and handler function. SIGTERM
+is caught using sigterm\_handler(). To ignore or set default action for signals,
+SIG\_IGN or SIG\_DFL are passed as second arguments.
+
+\includegraphics[width=\linewidth]{1a.png}
+
+
+\subsection{Using sigaction()}
+\lstinputlisting[style=codeStyleC]{1b.c}
+
+struct signaction action is declared and all of its variables are set to NULL or
+0, except the sa\_handler(signal handler). Just by changing sa\_handler, same
+action struct is used for setting handlers for different signals.
+
+\includegraphics[width=\linewidth]{1b.png}
+
+As we are allowing default action to take place when SIGSEGV is received, the
+process/code stops executing. On sending SIGINT to process, it continues
+execution as if nothing has happened.
+
+\clearpage
+\end{document}

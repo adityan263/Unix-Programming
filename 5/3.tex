@@ -1,0 +1,19 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Question 3}
+
+Write a Server-client logging architecture with mmap() inter process
+communication feature. The log client sends log messages and log server handles
+all messages from different log clients and writes to a DB file.
+
+\subsection{Server}
+\lstinputlisting[style=codeStyleC]{3s.c}
+\subsection{Client}
+\lstinputlisting[style=codeStyleC]{3c.c}
+
+Memory is allocated to a file named "logs.txt" and server and client communicate
+with eachother by reading and writing into this file.
+
+\centering\includegraphics[width=\linewidth]{3.png}
+\clearpage
+\end{document}

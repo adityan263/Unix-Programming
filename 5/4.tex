@@ -1,0 +1,18 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Question 4}
+
+Using pipe() and popen(), implement any command like “ls | wc –l”
+
+\subsection{Using popen():}
+\lstinputlisting[style=codeStyleC]{4a.c}
+\subsection{Using pipe():}
+\lstinputlisting[style=codeStyleC]{4b.c}
+
+In the first code, communication is established using popen function,which does
+multiple things internally. All the tasks performed by popen are implemented in 
+the second code manually.
+
+\centering\includegraphics[width=\linewidth]{4.png}
+\clearpage
+\end{document}

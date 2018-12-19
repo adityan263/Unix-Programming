@@ -1,0 +1,35 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Question 1}
+
+Write a program to do the following:
+\begin{enumerate}
+\item Create a child
+
+\item Let the child
+
+\begin{enumerate}
+\item Create it’s own foreground process group.
+
+\item Call “ps” and verify the above
+
+\item Verify that STDIN and STDOUT working with the child
+\end{enumerate}
+
+\item Wait for the child to terminate
+
+\item Change its group to foreground
+
+\item Verify that STDIN and STDOUT working with the parent
+\end{enumerate}
+
+\lstinputlisting[style=codeStyleC]{1.c}
+
+Initially child creates a new process group. As child is no longer part of
+foreground process, the parent has to execute tcsetpgrp() to make child's group
+foreground process. Once the child's process group is in foreground, it tries to
+read and write, and then it makes parent's group foreground process and exits.
+
+\centering\includegraphics[width=\linewidth]{1.png}
+\clearpage
+\end{document}

@@ -1,0 +1,32 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Question 4}
+
+Print all existing environment variables with their values. Later input a new
+variable and its value and add to the environment list. Once again print the
+list.
+
+\lstinputlisting[style=codeStyleC]{\asgnno/4.c}
+
+In this program, 2 different functions are used to add new environment variables
+and their value. 1. putenv  2. setenv
+
+In putenv, we have to provide an equation with variable name on LHS and value on
+RHS, then the function adds the environment variable. If that variable already
+exists, then it will replace its value with the new provided value(difference
+between 1.txt and 2.txt is that new variable is added in later one).
+
+In setenv, it has 3 arguments. First is name of variable, second is its value
+and third is replacement value. If the variable doesn't exist, then it is added
+and the new value is assigned to it. In this case value of replacement value
+doesn't matter(difference between 1.txt and 3.txt is that new variable is added
+in later one).
+If variable exists and the replacement value is zero, then value of variable is
+kept as it is(so 1.txt and 4.txt are same).
+If variable exists and replacement value is non zero, then the new value(second
+argument) is assigned to the environment variable(difference between 4.txt and
+5.txt is that value of the first new variable is changed).
+
+\centering\includegraphics[width=\linewidth]{\asgnno/4.png}
+\clearpage
+\end{document}

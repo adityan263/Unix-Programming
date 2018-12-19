@@ -1,0 +1,14 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Question 3}
+
+Using dup function redirect stdin to file1 and stdout to file2. Read a line
+using scanf and write the same using printf. Verify the contents of both files.
+
+\lstinputlisting[style=codeStyleC]{\asgnno/3.c}
+\centering\includegraphics[width=10cm]{\asgnno/3.jpg}
+
+As dup fills the first open descriptor from the top, STDIN or \nth{0} descriptor
+will be assigned to fr and \nth{1} descriptor to fw.
+
+\end{document}

@@ -1,0 +1,20 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Question 4}
+
+“Child inherit parent’s signal mask when it is created, but pending signals for
+the parent process are not passed on”. Write appropriate program and test with
+suitable inputs to verify this.
+
+\lstinputlisting[style=codeStyleC]{4.c}
+\includegraphics[width=\linewidth]{4.png}
+
+Initially, a mask is set for SIGINT and then the process sends SIGINT to itself.
+As SIGINT is masked, signal remains pending. Then the process forks and parent
+and child both check their masks and pending signals. The mask of parent process
+is inherited by child, but child doesn't inherit pending signals. In the end
+both parent and child unmask the SIGINT signal, but signal handler is called for
+parent only. This again shows that pending signals are not inherited.
+
+\clearpage
+\end{document}

@@ -1,0 +1,19 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Question 5}
+
+Measures the performance of the getpid()  and the fork functions using
+gettimeofday to measure the execution time. Measure the performance ten times
+for each of the two system calls and provide the timing results and compute an
+average for each system call.
+
+\lstinputlisting[style=codeStyleC]{\asgnno/5.c}
+
+In case of getpid(), the average time required remains between 6 to 8
+microseconds. For the fork function, average time required is between 55 to 80
+microseconds. Fork needs more time as the another copy of the program state is
+created and it is more work than finding pid.
+
+\centering\includegraphics[width=\linewidth]{\asgnno/5.png}
+\clearpage
+\end{document}

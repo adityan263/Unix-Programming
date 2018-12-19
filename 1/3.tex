@@ -1,0 +1,23 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Question 3}
+
+What will be the output for the program with following operation?
+
+\begin{enumerate}
+\item Create a new file “f1” and write “abcde” in it and close
+\item Open the file “f1” for writing with O\_APPEND flag 
+\item lseek to the beginning of the file
+\item Replace the existing data in the file with “12345”
+\end{enumerate}
+
+Justify your answer.
+
+\lstinputlisting[style=codeStyleC]{\asgnno/3.c}
+\centering\includegraphics[width=10cm]{\asgnno/3.jpg}
+
+If we open a file using O\_APPEND flag, every time before writing into the file,
+it is checked whether the file is opened using append mode and if it is then the
+write pointer is moved to end of the file.
+
+\end{document}

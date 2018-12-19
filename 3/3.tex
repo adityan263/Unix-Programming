@@ -1,0 +1,47 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Question 3}
+
+Write a program to include different types of variables to demonstrate the
+behavior of setjmp/longjmp.
+
+\begin{itemize}
+\item Include a jmp\_buf automatic variable in main()
+\item Invoke a function a() with the argument jmp\_buf variable.
+\item If return values of a() is nonzero, exit.
+\item Then invoke b() with the argument jmp\_buf variable.
+\item In a(), return the values of setjmp() invocation with argument as received
+jmp\_buf  variable.
+\item In b(), just invoke longjum() with  received jmp\_buf  variable and a non zero
+value.
+\end{itemize}
+
+Describe your observation and understanding
+
+\lstinputlisting[style=codeStyleC]{\asgnno/3.c}
+
+Inside the function a(), the destination for jump is fixed using setjmp and from
+the function b(), jump is called using longjmp. Program execution can come out
+of setjmp in 2 ways. One is when jump destionation is decided and other is when
+longjmp is called. In first case, it returns 0 and in second it returns the
+second argument which was passed to longjmp(non zero). Even if we pass zero as
+second argument to longjmp, it will still return 1. After longjmp, execution
+continues from the setjmp line, which can be seen in following image as "Entered
+a()" is printed only once.
+
+Optimizations don’t affect the global, static, and volatile variables; their
+values after the longjmp remain same. Without optimization, global, static,
+auto, register and volatile variables are stored in memory (the register hint is
+ignored for regival). When we enable optimization, both autoval and regival go
+into registers, even though the former wasn’t declared register, and the
+volatile variable stays in memory. The important thing to realize is that we
+must use the volatile attribute if we are writing portable code that uses
+nonlocal jumps. Anything else can change from one system to the next.
+
+The setjmp(3) manual page on one system states that variables stored in memory
+will have values as of the time of the longjmp, whereas variables in the CPU and
+floating-point registers are restored to their values when setjmp was called.
+
+\centering\includegraphics[width=\linewidth]{\asgnno/3.png}
+\clearpage
+\end{document}

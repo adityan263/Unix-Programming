@@ -1,0 +1,26 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Question 2}
+
+Create a FIFO file and write the programs for client-server communication. Print
+the file attributes of the FIFO file during:
+\begin{enumerate}
+\item Before client or server starts writing to FIFO
+\item After client writing a message, but before the server reading it.
+\item After client writing a message and after the server reading it.
+\end{enumerate}
+Describe your observation and understanding
+
+\subsection{Server}
+\lstinputlisting[style=codeStyleC]{\asgnno/2server.c}
+\subsection{Client}
+\lstinputlisting[style=codeStyleC]{\asgnno/2client.c}
+
+A FIFO special file (a named pipe) is similar to a pipe, except that it is
+accessed as part of the filesystem. The access time of file does not change when
+data is written into it. For access time to change, the data that is written
+must be read by some other process and then only the time changes.
+
+\centering\includegraphics[width=\linewidth]{\asgnno/2.png}
+\clearpage
+\end{document}

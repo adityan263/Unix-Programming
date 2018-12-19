@@ -1,0 +1,18 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Question 2}
+
+Create a child process. Let the parent sleeps of 5 seconds and exits. Can the
+child send SIGINT to its parent if exists and kill it? Verify with a sample
+program.
+
+\lstinputlisting[style=codeStyleC]{2.c}
+\includegraphics[width=\linewidth]{2.png}
+
+When parent sleeps for 5 seconds, child sends SIGINT to parent pid and exits. As
+sleep function returns the unslept time, so by doing some operations in signal
+handler or by checking return value of sleep, we can determine whether parent has
+received signal from child or not.
+
+\clearpage
+\end{document}
